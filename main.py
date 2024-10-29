@@ -1,6 +1,6 @@
 import requests
 import datetime
-import csv
+import json
 
 
 API_KEY = 'AIzaSyARlrYxIKVkTUQLXA796cQjxWZXcx-BHFI'
@@ -11,11 +11,11 @@ def main(isbn):
 
     if response.status_code == 200:
         data = response.json()
-
+       
         if 'items' in data:
             book_title = data['items'][0]['volumeInfo']['title']
             return book_title
-
+ 
         else:
             return "No book found with this ISBN."
     else:
@@ -23,21 +23,28 @@ def main(isbn):
 
 
 def write_book():
-    with open('dataisbn.csv',mode='a',newline = "") as file:
-        while True:
-            print("Hello there Drop Your Book in Box!!")
-            isbn_book1 = input("Scan Your Book :")
-            val_1 = datetime.datetime.now()
-            book1 = main(isbn_book1)
-            print(f"Book Title: {book1}")
-            print("Done!!")
-            isbn_book2= input("Scan Your New Book :")
-            val_2 = datetime.datetime.now()
-            book2 = main(isbn_book2)
-            print(f"Book Title: {book2}")
-            print("Do visit us again!!")
-            writer = csv.writer(file)
-            writer.writerow([book1,val_1,book2,val_2])
-    file.close()
-        
+    
+    db = {}
+    counter = 1
+    while True:
+        print("Hello there Drop Your Book in Box!!")
+        isbn_book1 = input("Scan Your Book :")
+        book1 = main(isbn_book1)
+        print(f"Book Title: {book1}")
+        print("Done!!")
+        isbn_book2= input("Scan Your New Book :")
+        val_1 = datetime.datetime.now().isoformat()
+        book2 = main(isbn_book2)
+        print(f"Book Title: {book2}")
+        print("Do visit us again!!")
+        data = {
+            'ID':f'{counter}',
+            'book_1':f'{book1}',
+            'book_2':f'{book2}',
+            'date_time':f'{val_1}'
+        }
+        db[counter] = data
+        with open('dataisbn.json','w') as file:
+            json.dump(db,file,indent=4,separators=(", "," : "))
+        counter+=1
 write_book()
