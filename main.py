@@ -3,7 +3,6 @@ import datetime
 import csv
 
 
-# Replace 'YOUR_API_KEY' with your actual Google Books API key
 API_KEY = 'AIzaSyARlrYxIKVkTUQLXA796cQjxWZXcx-BHFI'
 
 def main(isbn):
@@ -12,7 +11,7 @@ def main(isbn):
 
     if response.status_code == 200:
         data = response.json()
-        # Check if the book exists in the response
+
         if 'items' in data:
             book_title = data['items'][0]['volumeInfo']['title']
             return book_title
