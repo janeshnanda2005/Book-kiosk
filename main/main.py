@@ -3,8 +3,8 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, db
 
-# Initialize Firebase Admin SDK
-cred = credentials.Certificate('C:\Vignesh\main\Book-kiosk.cred.json')
+
+cred = credentials.Certificate('cred.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://book-kiosk-93f35-default-rtdb.europe-west1.firebasedatabase.app'
 })
