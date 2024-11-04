@@ -11,7 +11,7 @@ firebase_admin.initialize_app(cred, {
 
 API_KEY = 'AIzaSyARlrYxIKVkTUQLXA796cQjxWZXcx-BHFI'
 
-def getapi(isbn):
+def getbook(isbn):
     url = f'https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}&key={API_KEY}'
     response = requests.get(url)
 
@@ -32,7 +32,7 @@ def write_book():
     while True:
         print("Hello there Drop Your Book in Box!!")
         isbn_book1 = input("Scan Your Book :")
-        book1 = getapi(isbn_book1)
+        book1 = getbook(isbn_book1)
         
         if book1 in ["No book found with this ISBN.", "Failed to retrieve data."]:
             continue
@@ -44,7 +44,7 @@ def write_book():
         
         isbn_book2 = input("Scan Your New Book :")
         val_1 = datetime.datetime.now().isoformat()
-        book2 = getapi(isbn_book2)
+        book2 = getbook(isbn_book2)
         
         
         print(f"Book Title: {book2}")
