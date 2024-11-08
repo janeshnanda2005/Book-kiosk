@@ -54,7 +54,7 @@ def write_book():
             'ID': f'{counter}',
             'book_1': f'{book1}',
             'book_2': f'{book2}',
-            'date_time': f'{val_1}'
+            'date_time': f'{val_1[:19]}'
         }
         
 
