@@ -1,6 +1,9 @@
 # Book Kiosk
+This projects sets up a Book Exchange Kiosk on a Raspberry Pi using a barcode scanner, Google APIs, and Firebase. It allows users to scan books 
+and automatically retrieve information about them, storing the data locally on the Raspberry Pi.
 
-This Python script allows you to scan and retrieve book titles using their ISBN numbers via the Google Books API. The retrieved book titles and their scan timestamps are saved to a firebase realtime database.
+![book](book.jpg)
+
 
 ## Features
 
